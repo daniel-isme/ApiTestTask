@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ApiTestTask.Models
 {
-    public class Data : INotifyPropertyChanged
+    public class DataRow : INotifyPropertyChanged
     {
         private string dateValueDisplay;
         private double plan;
@@ -55,6 +55,12 @@ namespace ApiTestTask.Models
             }
         }
 
+        public string DateValue { get; set; }
+        public double Percent { get; set; }
+        public string Comment { get; set; }
+        public List<Comment> Comments { get; set; }
+
+
         #region INotifyPropertyChanged Members  
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -64,5 +70,29 @@ namespace ApiTestTask.Models
         }
         #endregion
 
+    }
+
+    public class JsonObject
+    {
+        public string Version { get; set; }
+        public int StatusCode { get; set; }
+        public Data Data { get; set; }
+    }
+
+    public class Data
+    {
+        public int ObjectId { get; set; }
+        public string IndicatorId { get; set; }
+        public string PeriodType { get; set; }
+        public string PeriodValue { get; set; }
+        public string DetailType { get; set; }
+        public string Name { get; set; }
+        public string Unit { get; set; }
+        public bool CacheUsed { get; set; }
+        public string MinDate { get; set; }
+        public string MaxDate { get; set; }
+        public string LastDate { get; set; }
+        public DataRow DataSeriesHeader { get; set; }
+        public List<DataRow> DataSeries { get; set; }
     }
 }
