@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ApiTestTask.Models
 {
-    public class DataDisplayModel
+    public class DataRowModel
     {
         public double Diff { get; set; }
         public double Fact { get; set; }
@@ -39,7 +39,7 @@ namespace ApiTestTask.Models
         public string MinDate { get; set; }
         public string MaxDate { get; set; }
         public string LastDate { get; set; }
-        public DataDisplayModel DataSeriesHeader { get; set; }
-        public List<DataDisplayModel> DataSeries { get; set; }
+        public DataRowModel DataSeriesHeader { get; set; }
+        public List<DataRowModel> DataSeries { get; set; }
     }
 }
