@@ -38,20 +38,24 @@
             <Label Grid.Row="1" Grid.Column="0" 
                    Text="Итог" FontSize="Medium" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
 
-            <CollectionView ItemsSource="{Binding Datas}" Grid.Row="2" Grid.ColumnSpan="5">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Label Grid.Column="0" Text="{Binding DateValueDisplay}" FontSize="Title" VerticalTextAlignment="Center" HorizontalTextAlignment="End"/>
-                            <Label Grid.Column="1" Text="{Binding Plan}" FontSize="Title" VerticalTextAlignment="Center" HorizontalTextAlignment="End"/>
-                            <Label Grid.Column="2" Text="{Binding Fact}" FontSize="Title" VerticalTextAlignment="Center" HorizontalTextAlignment="End"/>
-                            <Label Grid.Column="3" Text="{Binding Diff}" FontSize="Title" VerticalTextAlignment="Center" HorizontalTextAlignment="End"/>
-                            <Label Grid.Column="4" Text="Comm" FontSize="Title" VerticalTextAlignment="Center" HorizontalTextAlignment="End"/>
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-
-            </CollectionView>
+            <RefreshView IsRefreshing="{Binding IsRefreshing}"
+             Command="{Binding RefreshCommand}" Grid.Row="2" Grid.ColumnSpan="5">
+                
+                <CollectionView ItemsSource="{Binding Datas}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Label Grid.Column="0" Text="{Binding DateValueDisplay}" FontSize="Title" VerticalTextAlignment="Center" HorizontalTextAlignment="End"/>
+                                <Label Grid.Column="1" Text="{Binding Plan}" FontSize="Title" VerticalTextAlignment="Center" HorizontalTextAlignment="End"/>
+                                <Label Grid.Column="2" Text="{Binding Fact}" FontSize="Title" VerticalTextAlignment="Center" HorizontalTextAlignment="End"/>
+                                <Label Grid.Column="3" Text="{Binding Diff}" FontSize="Title" VerticalTextAlignment="Center" HorizontalTextAlignment="End"/>
+                                <Label Grid.Column="4" Text="Comm" FontSize="Title" VerticalTextAlignment="Center" HorizontalTextAlignment="End"/>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                
+            </RefreshView>
 
         </Grid>
     </ContentPage.Content>

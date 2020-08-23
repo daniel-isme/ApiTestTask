@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace ApiTestTask.ViewModels
 {
@@ -18,10 +19,31 @@ namespace ApiTestTask.ViewModels
     {
         private IList<DataRowModel> datas;
         public static ErrorModel Error;
+        public ICommand RefreshCommand { get; }
 
         public DataViewModel()
         {
+            RefreshCommand = new Command(ExecuteRefreshCommand);
             GetData();
+        }
+
+        bool isRefreshing;
+        public bool IsRefreshing
+        {
+            get => isRefreshing;
+            set
+            {
+                isRefreshing = value;
+                OnPropertyChanged(nameof(IsRefreshing));
+            }
+        }
+
+        void ExecuteRefreshCommand()
+        {
+            GetData();
+
+            // Stop refreshing
+            IsRefreshing = false;
         }
 
         public IList<DataRowModel> Datas
@@ -41,13 +63,17 @@ namespace ApiTestTask.ViewModels
             public string Cancel { get; set; }
         }
 
-        async void GetData()
+        private void GetData()
         {
-            var dataJson = await DownloadInformationJson();
+            var dataJson = Task.Run(async () => await DownloadInformationJsonAsync()).Result;
             if (dataJson != null)
             {
                 var dataObject = JsonConvert.DeserializeObject<JsonObjectModel>(dataJson);
                 Datas = dataObject.Data.DataSeries;
+            }
+            else
+            {
+                DisplayError();
             }
 
             Datas = new List<DataRowModel>
@@ -58,21 +84,21 @@ namespace ApiTestTask.ViewModels
             };
         }
 
-        async Task<string> DownloadInformationJson()
+        async Task<string> DownloadInformationJsonAsync()
         {
             if (!HasInternetConnection())
             {
                 return null;
             }            
 
-            Uri url = new Uri("https://uc51dcd2fde5d5d87d793279c0af.dl.dropboxusercontent.com/cd/0/get/A93zuT7EnXcCC6MvhEy0F1SCUnt84zmse6jkBnm-Ex3UJoh0dVkiiT5NY9wj4DBtyXCxWFoda4ScMtNGqbgGI48hesP2b0u3G-CcRwmRlguNfdIeNczjZNP6UEqx-S_UvkM/file");
+            string url = "https://uc51dcd2fde5d5d87d793279c0af.dl.dropboxusercontent.com/cd/0/get/A93zuT7EnXcCC6MvhEy0F1SCUnt84zmse6jkBnm-Ex3UJoh0dVkiiT5NY9wj4DBtyXCxWFoda4ScMtNGqbgGI48hesP2b0u3G-CcRwmRlguNfdIeNczjZNP6UEqx-S_UvkM/file";
             string json = string.Empty;
-
+                        
             using (WebClient wc = new WebClient())
             {
                 try
                 {
-                    json = await wc.DownloadStringTaskAsync(url);
+                    json = await wc.DownloadStringTaskAsync(new Uri(url));
                 }
                 catch
                 {
@@ -82,7 +108,6 @@ namespace ApiTestTask.ViewModels
                         Message = "Unable to receive data",
                         Cancel = "Ok"
                     };
-                    DisplayError();
                 }
             }
 
@@ -116,9 +141,10 @@ namespace ApiTestTask.ViewModels
         void DisplayError()
         {
             var mainPage = App.Current.MainPage;
-            if (mainPage != null)
+            if (mainPage != null && Error != null)
             {
                 mainPage.DisplayAlert(Error.Title, Error.Message, Error.Cancel);
+                Error = null;
             }
         }
 
