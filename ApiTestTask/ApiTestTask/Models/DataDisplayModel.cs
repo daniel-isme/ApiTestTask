@@ -5,71 +5,18 @@ using System.Text;
 
 namespace ApiTestTask.Models
 {
-    public class DataDisplayModel : INotifyPropertyChanged
+    public class DataDisplayModel
     {
-        private string dateValueDisplay;
-        private double plan;
-        private double fact;
-        private double diff;
+        public double Diff { get; set; }
+        public double Fact { get; set; }
+        public double Plan { get; set; }
+        public string DateValueDisplay { get; set; }
 
-        public double Diff
-        {
-            get { return diff; }
-            set 
-            { 
-                diff = value;
-                OnPropertyChanged(nameof(Diff));
-            }
-        }
-
-
-        public double Fact
-        {
-            get { return fact; }
-            set 
-            { 
-                fact = value;
-                OnPropertyChanged(nameof(Fact));
-            }
-        }
-
-
-        public double Plan
-        {
-            get { return plan; }
-            set
-            {
-                plan = value;
-                OnPropertyChanged(nameof(Plan));
-            }
-        }
-
-
-        public string DateValueDisplay
-        {
-            get { return dateValueDisplay; }
-            set
-            {
-                dateValueDisplay = value;
-                OnPropertyChanged(nameof(DateValueDisplay));
-            }
-        }
 
         public string DateValue { get; set; }
         public double Percent { get; set; }
         public string Comment { get; set; }
         public List<Comment> Comments { get; set; }
-
-
-        #region INotifyPropertyChanged Members  
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        #endregion
-
     }
 
     public class JsonObjectModel
