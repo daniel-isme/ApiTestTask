@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ApiTestTask.Models
 {
-    public class DataRow : INotifyPropertyChanged
+    public class DataDisplayModel : INotifyPropertyChanged
     {
         private string dateValueDisplay;
         private double plan;
@@ -72,14 +72,14 @@ namespace ApiTestTask.Models
 
     }
 
-    public class JsonObject
+    public class JsonObjectModel
     {
         public string Version { get; set; }
         public int StatusCode { get; set; }
-        public Data Data { get; set; }
+        public DataModel Data { get; set; }
     }
 
-    public class Data
+    public class DataModel
     {
         public int ObjectId { get; set; }
         public string IndicatorId { get; set; }
@@ -92,7 +92,7 @@ namespace ApiTestTask.Models
         public string MinDate { get; set; }
         public string MaxDate { get; set; }
         public string LastDate { get; set; }
-        public DataRow DataSeriesHeader { get; set; }
-        public List<DataRow> DataSeries { get; set; }
+        public DataDisplayModel DataSeriesHeader { get; set; }
+        public List<DataDisplayModel> DataSeries { get; set; }
     }
 }
