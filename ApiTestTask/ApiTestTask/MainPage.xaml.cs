@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ApiTestTask.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -13,6 +14,15 @@ namespace ApiTestTask
         public MainPage()
         {
             InitializeComponent();
+        }
+
+        protected override void OnAppearing()
+        {
+            var error = DataViewModel.Error;
+            if (error != null)
+            {
+                DisplayAlert(error.Title, error.Message, error.Cancel);
+            }
         }
     }
 }
