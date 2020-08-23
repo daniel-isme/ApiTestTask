@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -13,9 +14,9 @@ using Xamarin.Essentials;
 
 namespace ApiTestTask.ViewModels
 {
-    class DataViewModel
+    public class DataViewModel : INotifyPropertyChanged
     {
-        private IList<DataRowModel> _DatasList;
+        private IList<DataRowModel> datas;
         public static ErrorModel Error;
 
         public DataViewModel()
@@ -25,8 +26,12 @@ namespace ApiTestTask.ViewModels
 
         public IList<DataRowModel> Datas
         {
-            get { return _DatasList; }
-            set { _DatasList = value; }
+            get { return datas; }
+            set 
+            {
+                datas = value;
+                OnPropertyChanged(nameof(Datas));
+            }
         }
 
         public class ErrorModel
@@ -42,8 +47,15 @@ namespace ApiTestTask.ViewModels
             if (dataJson != null)
             {
                 var dataObject = JsonConvert.DeserializeObject<JsonObjectModel>(dataJson);
-                _DatasList = dataObject.Data.DataSeries;
+                Datas = dataObject.Data.DataSeries;
             }
+
+            Datas = new List<DataRowModel>
+            {
+                new DataRowModel { DateValueDisplay = "01", Plan = 18, Fact = 18, Diff = 0 },
+                new DataRowModel { DateValueDisplay = "02", Plan = 33, Fact = 28, Diff = -5 },
+                new DataRowModel { DateValueDisplay = "03", Plan = 36, Fact = 28, Diff = -8 }
+            };
         }
 
         async Task<string> DownloadInformationJson()
@@ -80,13 +92,6 @@ namespace ApiTestTask.ViewModels
             }
 
             return null;
-
-            //_DatasList = new List<DataRowModel>
-            //{
-            //    new DataRowModel { DateValueDisplay = "01", Plan = 18, Fact = 18, Diff = 0 },
-            //    new DataRowModel { DateValueDisplay = "02", Plan = 33, Fact = 28, Diff = -5 },
-            //    new DataRowModel { DateValueDisplay = "03", Plan = 36, Fact = 28, Diff = -8 }
-            //};
         }
 
         private bool HasInternetConnection()
@@ -116,5 +121,14 @@ namespace ApiTestTask.ViewModels
                 mainPage.DisplayAlert(Error.Title, Error.Message, Error.Cancel);
             }
         }
+
+        #region INotifyPropertyChanged Members  
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        #endregion
     }
 }

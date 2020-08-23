@@ -36,7 +36,7 @@
                    Text="Откл." TextColor="White" FontSize="Medium" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
 
             <Label Grid.Row="1" Grid.Column="0" 
-                   Text="Итог" TextColor="Black" FontSize="Medium" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                   Text="Итог" FontSize="Medium" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
 
             <CollectionView ItemsSource="{Binding Datas}" Grid.Row="2" Grid.ColumnSpan="5">
                 <CollectionView.ItemTemplate>
