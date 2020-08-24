@@ -42,7 +42,7 @@
                            Text="{Binding Plan, StringFormat='{0:0.00}'}" FontAttributes="Bold" FontSize="Medium" HorizontalTextAlignment="End"/>
                     <Label Grid.Column="2" TextColor="#393939"
                            Text="{Binding Fact, StringFormat='{0:0.00}'}" FontAttributes="Bold" FontSize="Medium" HorizontalTextAlignment="End"/>
-                    <Label Grid.Column="3" TextColor="#b2b5bc"
+                    <Label Grid.Column="3" TextColor="{Binding Color}"
                            Text="{Binding Diff, StringFormat='{0:0.00}'}" FontAttributes="Bold" FontSize="Medium" HorizontalTextAlignment="End"/>
                     <Label Grid.Column="4"/>
                 </Grid>
