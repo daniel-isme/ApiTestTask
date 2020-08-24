@@ -39,11 +39,11 @@
                 <Grid BindingContext="{Binding DataSeriesHeader}">
                     <Label Grid.Column="0" Text="Итог" TextColor="#4f596e" FontSize="Medium" HorizontalTextAlignment="End"/>
                     <Label Grid.Column="1" TextColor="#4f596e"
-                           Text="{Binding Plan, StringFormat='{0:0.00}'}" FontSize="Medium" HorizontalTextAlignment="End"/>
+                           Text="{Binding Plan, StringFormat='{0:0.00}'}" FontAttributes="Bold" FontSize="Medium" HorizontalTextAlignment="End"/>
                     <Label Grid.Column="2" TextColor="#393939"
-                           Text="{Binding Fact, StringFormat='{0:0.00}'}" FontSize="Medium" HorizontalTextAlignment="End"/>
+                           Text="{Binding Fact, StringFormat='{0:0.00}'}" FontAttributes="Bold" FontSize="Medium" HorizontalTextAlignment="End"/>
                     <Label Grid.Column="3" TextColor="#b2b5bc"
-                           Text="{Binding Diff, StringFormat='{0:0.00}'}" FontSize="Medium" HorizontalTextAlignment="End"/>
+                           Text="{Binding Diff, StringFormat='{0:0.00}'}" FontAttributes="Bold" FontSize="Medium" HorizontalTextAlignment="End"/>
                     <Label Grid.Column="4"/>
                 </Grid>
             </StackLayout>
@@ -58,9 +58,12 @@
                                 <BoxView HorizontalOptions="FillAndExpand" HeightRequest="2" Color="#dbdbdb"/>
                                 <Grid Margin="0,9,0,0">
                                     <Label Grid.Column="0" Text="{Binding DateValueDisplay}" FontSize="Medium" TextColor="#4f596e" HorizontalTextAlignment="End"/>
-                                    <Label Grid.Column="1" Text="{Binding Plan, StringFormat='{0:0.00}'}" FontSize="Medium" TextColor="#4f596e" HorizontalTextAlignment="End"/>
-                                    <Label Grid.Column="2" Text="{Binding Fact, StringFormat='{0:0.00}'}" FontSize="Medium" TextColor="#393939" HorizontalTextAlignment="End"/>
-                                    <Label Grid.Column="3" Text="{Binding Diff, StringFormat='{0:0.00}'}" FontSize="Medium" TextColor="#b2b5bc" HorizontalTextAlignment="End"/>
+                                    <Label Grid.Column="1" Text="{Binding Plan, StringFormat='{0:0.00}'}"
+                                           FontAttributes="Bold" FontSize="Medium" TextColor="#4f596e" HorizontalTextAlignment="End"/>
+                                    <Label Grid.Column="2" Text="{Binding Fact, StringFormat='{0:0.00}'}"
+                                           FontAttributes="Bold" FontSize="Medium" TextColor="#393939" HorizontalTextAlignment="End"/>
+                                    <Label Grid.Column="3" Text="{Binding Diff, StringFormat='{0:0.00}'}"
+                                           FontAttributes="Bold" FontSize="Medium" TextColor="{Binding Color}" HorizontalTextAlignment="End"/>
                                     <Label Grid.Column="4" Text="CM" FontSize="Medium" HorizontalTextAlignment="Center"/>
                                 </Grid>
                             </StackLayout>

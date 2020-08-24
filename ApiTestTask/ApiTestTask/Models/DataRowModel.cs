@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Text;
 
 namespace ApiTestTask.Models
@@ -11,6 +12,7 @@ namespace ApiTestTask.Models
         public double Fact { get; set; }
         public double Plan { get; set; }
         public string DateValueDisplay { get; set; }
+        public Color Color { get; set; }
 
 
         public string DateValue { get; set; }

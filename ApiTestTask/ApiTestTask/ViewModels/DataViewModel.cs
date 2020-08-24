@@ -84,6 +84,12 @@ namespace ApiTestTask.ViewModels
                 var dataSeriesHeader = allDataObject.Data.DataSeriesHeader;
                 DataSeries = allDataObject.Data.DataSeries;
                 DataSeriesHeader = allDataObject.Data.DataSeriesHeader;
+                foreach (var dataRow in DataSeries)
+                {
+                    if (dataRow.Diff < 0) dataRow.Color = ColorConverters.FromHex("#f98883");
+                    else if (dataRow.Diff > 0) dataRow.Color = Color.Green;
+                    else dataRow.Color = ColorConverters.FromHex("#b2b5bc");
+                }
             }
             else
             {
