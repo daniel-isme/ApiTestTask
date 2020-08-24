@@ -13,11 +13,11 @@
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.9*"/>
-                <RowDefinition Height="1.1*"/>
+                <RowDefinition Height="1*"/>
                 <RowDefinition Height="6*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
@@ -27,29 +27,39 @@
             <BoxView Grid.Row="0" Grid.ColumnSpan="5" BackgroundColor="#778298"/>
 
             <Label Grid.Row="0" Grid.Column="1" 
-                   Text="План" TextColor="White" FontSize="Medium" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                   Text="План" TextColor="White" FontSize="Medium" VerticalTextAlignment="Center" HorizontalTextAlignment="End"/>
 
             <Label Grid.Row="0" Grid.Column="2" 
-                   Text="Факт" TextColor="White" FontSize="Medium" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                   Text="Факт" TextColor="White" FontSize="Medium" VerticalTextAlignment="Center" HorizontalTextAlignment="End"/>
 
             <Label Grid.Row="0" Grid.Column="3" 
-                   Text="Откл." TextColor="White" FontSize="Medium" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                   Text="Откл." TextColor="White" FontSize="Medium" VerticalTextAlignment="Center" HorizontalTextAlignment="End"/>
 
-            <Label Grid.Row="1" Grid.Column="0" 
-                   Text="Итог" FontSize="Medium" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+            <StackLayout Grid.Row="1" Grid.ColumnSpan="5" VerticalOptions="Center">
+                <Grid BindingContext="{Binding DataSeriesHeader}">
+                    <Label Grid.Column="0" Text="Итог" FontSize="Title" HorizontalTextAlignment="End"/>
+                    <Label Grid.Column="1"
+                           Text="{Binding Plan}" FontSize="Title" HorizontalTextAlignment="End"/>
+                    <Label Grid.Column="2"
+                           Text="{Binding Fact}" FontSize="Title" HorizontalTextAlignment="End"/>
+                    <Label Grid.Column="3"
+                           Text="{Binding Diff}" FontSize="Title" HorizontalTextAlignment="End"/>
+                    <Label Grid.Column="4"/>
+                </Grid>
+            </StackLayout>
 
             <RefreshView IsRefreshing="{Binding IsRefreshing}"
              Command="{Binding RefreshCommand}" Grid.Row="2" Grid.ColumnSpan="5">
                 
-                <CollectionView ItemsSource="{Binding Datas}">
+                <CollectionView ItemsSource="{Binding DataSeries}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Grid>
-                                <Label Grid.Column="0" Text="{Binding DateValueDisplay}" FontSize="Title" VerticalTextAlignment="Center" HorizontalTextAlignment="End"/>
-                                <Label Grid.Column="1" Text="{Binding Plan}" FontSize="Title" VerticalTextAlignment="Center" HorizontalTextAlignment="End"/>
-                                <Label Grid.Column="2" Text="{Binding Fact}" FontSize="Title" VerticalTextAlignment="Center" HorizontalTextAlignment="End"/>
-                                <Label Grid.Column="3" Text="{Binding Diff}" FontSize="Title" VerticalTextAlignment="Center" HorizontalTextAlignment="End"/>
-                                <Label Grid.Column="4" Text="Comm" FontSize="Title" VerticalTextAlignment="Center" HorizontalTextAlignment="End"/>
+                                <Label Grid.Column="0" Text="{Binding DateValueDisplay}" FontSize="Title" HorizontalTextAlignment="End"/>
+                                <Label Grid.Column="1" Text="{Binding Plan}" FontSize="Title" HorizontalTextAlignment="End"/>
+                                <Label Grid.Column="2" Text="{Binding Fact}" FontSize="Title" HorizontalTextAlignment="End"/>
+                                <Label Grid.Column="3" Text="{Binding Diff}" FontSize="Title" HorizontalTextAlignment="End"/>
+                                <Label Grid.Column="4" Text="Comm" FontSize="Title" HorizontalTextAlignment="End"/>
                             </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>

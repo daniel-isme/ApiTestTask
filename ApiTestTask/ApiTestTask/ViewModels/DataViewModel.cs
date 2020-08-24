@@ -17,7 +17,9 @@ namespace ApiTestTask.ViewModels
 {
     public class DataViewModel : INotifyPropertyChanged
     {
-        private IList<DataRowModel> datas;
+        private IList<DataRowModel> dataSeries;
+        private DataRowModel dataSeriesHeader;
+
         public static ErrorModel Error;
         public ICommand RefreshCommand { get; }
 
@@ -46,13 +48,23 @@ namespace ApiTestTask.ViewModels
             IsRefreshing = false;
         }
 
-        public IList<DataRowModel> Datas
+        public IList<DataRowModel> DataSeries
         {
-            get { return datas; }
+            get { return dataSeries; }
             set 
             {
-                datas = value;
-                OnPropertyChanged(nameof(Datas));
+                dataSeries = value;
+                OnPropertyChanged(nameof(DataSeries));
+            }
+        }
+
+        public DataRowModel DataSeriesHeader
+        {
+            get { return dataSeriesHeader; }
+            set 
+            {
+                dataSeriesHeader = value;
+                OnPropertyChanged(nameof(DataSeriesHeader));
             }
         }
 
@@ -65,23 +77,46 @@ namespace ApiTestTask.ViewModels
 
         private void GetData()
         {
-            var dataJson = Task.Run(async () => await DownloadInformationJsonAsync()).Result;
-            if (dataJson != null)
+            var allDataJson = Task.Run(async () => await DownloadInformationJsonAsync()).Result;
+            if (allDataJson != null)
             {
-                var dataObject = JsonConvert.DeserializeObject<JsonObjectModel>(dataJson);
-                Datas = dataObject.Data.DataSeries;
+                var allDataObject = JsonConvert.DeserializeObject<JsonObjectModel>(allDataJson);
+                var dataSeriesHeader = allDataObject.Data.DataSeriesHeader;
+                DataSeries = allDataObject.Data.DataSeries;
+                DataSeriesHeader = allDataObject.Data.DataSeriesHeader;
             }
             else
             {
                 DisplayError();
             }
 
-            Datas = new List<DataRowModel>
-            {
-                new DataRowModel { DateValueDisplay = "01", Plan = 18, Fact = 18, Diff = 0 },
-                new DataRowModel { DateValueDisplay = "02", Plan = 33, Fact = 28, Diff = -5 },
-                new DataRowModel { DateValueDisplay = "03", Plan = 36, Fact = 28, Diff = -8 }
-            };
+
+            //DataSeriesHeader = new DataRowModel { DateValueDisplay = null, Plan = 654, Fact = 612, Diff = -42 };
+
+            //DataSeries = new List<DataRowModel>
+            //{
+            //    new DataRowModel { DateValueDisplay = "01", Plan = 18, Fact = 18, Diff = 0 },
+            //    new DataRowModel { DateValueDisplay = "02", Plan = 33, Fact = 28, Diff = -5 },
+            //    new DataRowModel { DateValueDisplay = "03", Plan = 36, Fact = 28, Diff = -8 },
+            //    new DataRowModel { DateValueDisplay = "01", Plan = 18, Fact = 18, Diff = 0 },
+            //    new DataRowModel { DateValueDisplay = "02", Plan = 33, Fact = 28, Diff = -5 },
+            //    new DataRowModel { DateValueDisplay = "03", Plan = 36, Fact = 28, Diff = -8 },
+            //    new DataRowModel { DateValueDisplay = "01", Plan = 18, Fact = 18, Diff = 0 },
+            //    new DataRowModel { DateValueDisplay = "02", Plan = 33, Fact = 28, Diff = -5 },
+            //    new DataRowModel { DateValueDisplay = "03", Plan = 36, Fact = 28, Diff = -8 },
+            //    new DataRowModel { DateValueDisplay = "01", Plan = 18, Fact = 18, Diff = 0 },
+            //    new DataRowModel { DateValueDisplay = "02", Plan = 33, Fact = 28, Diff = -5 },
+            //    new DataRowModel { DateValueDisplay = "03", Plan = 36, Fact = 28, Diff = -8 },
+            //    new DataRowModel { DateValueDisplay = "01", Plan = 18, Fact = 18, Diff = 0 },
+            //    new DataRowModel { DateValueDisplay = "02", Plan = 33, Fact = 28, Diff = -5 },
+            //    new DataRowModel { DateValueDisplay = "03", Plan = 36, Fact = 28, Diff = -8 },
+            //    new DataRowModel { DateValueDisplay = "01", Plan = 18, Fact = 18, Diff = 0 },
+            //    new DataRowModel { DateValueDisplay = "02", Plan = 33, Fact = 28, Diff = -5 },
+            //    new DataRowModel { DateValueDisplay = "03", Plan = 36, Fact = 28, Diff = -8 },
+            //    new DataRowModel { DateValueDisplay = "01", Plan = 18, Fact = 18, Diff = 0 },
+            //    new DataRowModel { DateValueDisplay = "02", Plan = 33, Fact = 28, Diff = -5 },
+            //    new DataRowModel { DateValueDisplay = "03", Plan = 36, Fact = 28, Diff = -8 },
+            //};
         }
 
         async Task<string> DownloadInformationJsonAsync()
@@ -91,7 +126,8 @@ namespace ApiTestTask.ViewModels
                 return null;
             }            
 
-            string url = "https://uc51dcd2fde5d5d87d793279c0af.dl.dropboxusercontent.com/cd/0/get/A93zuT7EnXcCC6MvhEy0F1SCUnt84zmse6jkBnm-Ex3UJoh0dVkiiT5NY9wj4DBtyXCxWFoda4ScMtNGqbgGI48hesP2b0u3G-CcRwmRlguNfdIeNczjZNP6UEqx-S_UvkM/file";
+            //string url = "https://uc51dcd2fde5d5d87d793279c0af.dl.dropboxusercontent.com/cd/0/get/A93zuT7EnXcCC6MvhEy0F1SCUnt84zmse6jkBnm-Ex3UJoh0dVkiiT5NY9wj4DBtyXCxWFoda4ScMtNGqbgGI48hesP2b0u3G-CcRwmRlguNfdIeNczjZNP6UEqx-S_UvkM/file";
+            string url = "https://uc2e830cb90ae8f8a417e8b0a5f3.dl.dropboxusercontent.com/cd/0/get/A-ARvkcAScQYq8t3v_n-QXk5YipVKH053C-y8xtwhIaJrf_GB6itLfmXDeRjw0SlLYpK7UJW7ylzIBb53J6pEDrb1V_vUdseKu8TGeUf9jr_RZCp5wexAZxlnzVndttAYec/file#";
             string json = string.Empty;
                         
             using (WebClient wc = new WebClient())
