@@ -89,34 +89,6 @@ namespace ApiTestTask.ViewModels
             {
                 DisplayError();
             }
-
-
-            //DataSeriesHeader = new DataRowModel { DateValueDisplay = null, Plan = 654, Fact = 612, Diff = -42 };
-
-            //DataSeries = new List<DataRowModel>
-            //{
-            //    new DataRowModel { DateValueDisplay = "01", Plan = 18, Fact = 18, Diff = 0 },
-            //    new DataRowModel { DateValueDisplay = "02", Plan = 33, Fact = 28, Diff = -5 },
-            //    new DataRowModel { DateValueDisplay = "03", Plan = 36, Fact = 28, Diff = -8 },
-            //    new DataRowModel { DateValueDisplay = "01", Plan = 18, Fact = 18, Diff = 0 },
-            //    new DataRowModel { DateValueDisplay = "02", Plan = 33, Fact = 28, Diff = -5 },
-            //    new DataRowModel { DateValueDisplay = "03", Plan = 36, Fact = 28, Diff = -8 },
-            //    new DataRowModel { DateValueDisplay = "01", Plan = 18, Fact = 18, Diff = 0 },
-            //    new DataRowModel { DateValueDisplay = "02", Plan = 33, Fact = 28, Diff = -5 },
-            //    new DataRowModel { DateValueDisplay = "03", Plan = 36, Fact = 28, Diff = -8 },
-            //    new DataRowModel { DateValueDisplay = "01", Plan = 18, Fact = 18, Diff = 0 },
-            //    new DataRowModel { DateValueDisplay = "02", Plan = 33, Fact = 28, Diff = -5 },
-            //    new DataRowModel { DateValueDisplay = "03", Plan = 36, Fact = 28, Diff = -8 },
-            //    new DataRowModel { DateValueDisplay = "01", Plan = 18, Fact = 18, Diff = 0 },
-            //    new DataRowModel { DateValueDisplay = "02", Plan = 33, Fact = 28, Diff = -5 },
-            //    new DataRowModel { DateValueDisplay = "03", Plan = 36, Fact = 28, Diff = -8 },
-            //    new DataRowModel { DateValueDisplay = "01", Plan = 18, Fact = 18, Diff = 0 },
-            //    new DataRowModel { DateValueDisplay = "02", Plan = 33, Fact = 28, Diff = -5 },
-            //    new DataRowModel { DateValueDisplay = "03", Plan = 36, Fact = 28, Diff = -8 },
-            //    new DataRowModel { DateValueDisplay = "01", Plan = 18, Fact = 18, Diff = 0 },
-            //    new DataRowModel { DateValueDisplay = "02", Plan = 33, Fact = 28, Diff = -5 },
-            //    new DataRowModel { DateValueDisplay = "03", Plan = 36, Fact = 28, Diff = -8 },
-            //};
         }
 
         async Task<string> DownloadInformationJsonAsync()
@@ -128,6 +100,7 @@ namespace ApiTestTask.ViewModels
 
             //string url = "https://uc51dcd2fde5d5d87d793279c0af.dl.dropboxusercontent.com/cd/0/get/A93zuT7EnXcCC6MvhEy0F1SCUnt84zmse6jkBnm-Ex3UJoh0dVkiiT5NY9wj4DBtyXCxWFoda4ScMtNGqbgGI48hesP2b0u3G-CcRwmRlguNfdIeNczjZNP6UEqx-S_UvkM/file";
             string url = "https://uc2e830cb90ae8f8a417e8b0a5f3.dl.dropboxusercontent.com/cd/0/get/A-ARvkcAScQYq8t3v_n-QXk5YipVKH053C-y8xtwhIaJrf_GB6itLfmXDeRjw0SlLYpK7UJW7ylzIBb53J6pEDrb1V_vUdseKu8TGeUf9jr_RZCp5wexAZxlnzVndttAYec/file#";
+            //string url = "https://uce04a6c7e9e2a30135b2bb87acc.dl.dropboxusercontent.com/cd/0/get/A-BZ1tVh9mlMiHy4s_6ZDEG2WNHKwA19ABGVVV-NaPICPuaEUPHJk5HBK6mRsMZMR7CdegrzH9IUasFWZg6Cfr1OP0Q_bikPZ9yJWq5ckTl6FuxHVcoKn43E13vDXKqnBRg/file?dl=1";
             string json = string.Empty;
                         
             using (WebClient wc = new WebClient())

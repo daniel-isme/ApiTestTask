@@ -12,8 +12,8 @@
         <Grid>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.9*"/>
-                <RowDefinition Height="1*"/>
+                <RowDefinition Height="0.8*"/>
+                <RowDefinition Height="0.8*"/>
                 <RowDefinition Height="6*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -37,13 +37,13 @@
 
             <StackLayout Grid.Row="1" Grid.ColumnSpan="5" VerticalOptions="Center">
                 <Grid BindingContext="{Binding DataSeriesHeader}">
-                    <Label Grid.Column="0" Text="Итог" FontSize="Title" HorizontalTextAlignment="End"/>
-                    <Label Grid.Column="1"
-                           Text="{Binding Plan}" FontSize="Title" HorizontalTextAlignment="End"/>
-                    <Label Grid.Column="2"
-                           Text="{Binding Fact}" FontSize="Title" HorizontalTextAlignment="End"/>
-                    <Label Grid.Column="3"
-                           Text="{Binding Diff}" FontSize="Title" HorizontalTextAlignment="End"/>
+                    <Label Grid.Column="0" Text="Итог" TextColor="#4f596e" FontSize="Medium" HorizontalTextAlignment="End"/>
+                    <Label Grid.Column="1" TextColor="#4f596e"
+                           Text="{Binding Plan, StringFormat='{0:0.00}'}" FontSize="Medium" HorizontalTextAlignment="End"/>
+                    <Label Grid.Column="2" TextColor="#393939"
+                           Text="{Binding Fact, StringFormat='{0:0.00}'}" FontSize="Medium" HorizontalTextAlignment="End"/>
+                    <Label Grid.Column="3" TextColor="#b2b5bc"
+                           Text="{Binding Diff, StringFormat='{0:0.00}'}" FontSize="Medium" HorizontalTextAlignment="End"/>
                     <Label Grid.Column="4"/>
                 </Grid>
             </StackLayout>
@@ -54,13 +54,16 @@
                 <CollectionView ItemsSource="{Binding DataSeries}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Grid>
-                                <Label Grid.Column="0" Text="{Binding DateValueDisplay}" FontSize="Title" HorizontalTextAlignment="End"/>
-                                <Label Grid.Column="1" Text="{Binding Plan}" FontSize="Title" HorizontalTextAlignment="End"/>
-                                <Label Grid.Column="2" Text="{Binding Fact}" FontSize="Title" HorizontalTextAlignment="End"/>
-                                <Label Grid.Column="3" Text="{Binding Diff}" FontSize="Title" HorizontalTextAlignment="End"/>
-                                <Label Grid.Column="4" Text="Comm" FontSize="Title" HorizontalTextAlignment="End"/>
-                            </Grid>
+                            <StackLayout HeightRequest="60" VerticalOptions="Center">
+                                <BoxView HorizontalOptions="FillAndExpand" HeightRequest="2" Color="#dbdbdb"/>
+                                <Grid Margin="0,9,0,0">
+                                    <Label Grid.Column="0" Text="{Binding DateValueDisplay}" FontSize="Medium" TextColor="#4f596e" HorizontalTextAlignment="End"/>
+                                    <Label Grid.Column="1" Text="{Binding Plan, StringFormat='{0:0.00}'}" FontSize="Medium" TextColor="#4f596e" HorizontalTextAlignment="End"/>
+                                    <Label Grid.Column="2" Text="{Binding Fact, StringFormat='{0:0.00}'}" FontSize="Medium" TextColor="#393939" HorizontalTextAlignment="End"/>
+                                    <Label Grid.Column="3" Text="{Binding Diff, StringFormat='{0:0.00}'}" FontSize="Medium" TextColor="#b2b5bc" HorizontalTextAlignment="End"/>
+                                    <Label Grid.Column="4" Text="CM" FontSize="Medium" HorizontalTextAlignment="Center"/>
+                                </Grid>
+                            </StackLayout>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
