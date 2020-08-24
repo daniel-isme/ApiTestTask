@@ -1,4 +1,5 @@
 ﻿using ApiTestTask.Models;
+using ApiTestTask.Views;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -15,7 +16,7 @@ using Xamarin.Forms;
 
 namespace ApiTestTask.ViewModels
 {
-    public class DataViewModel : INotifyPropertyChanged
+    public class DataViewModel : BaseViewModel
     {
         private IList<DataRowModel> dataSeries;
         private DataRowModel dataSeriesHeader;
@@ -27,7 +28,17 @@ namespace ApiTestTask.ViewModels
         {
             RefreshCommand = new Command(ExecuteRefreshCommand);
             GetData();
+
+            CommentsCommand = new Command(async () =>
+            {
+                var commentVM = new CommentViewModel(SelectedItem.Comments);
+                var commentsPage = new CommentsPage();
+                commentsPage.BindingContext = commentVM;
+                await Application.Current.MainPage.Navigation.PushAsync(commentsPage);
+            });
         }
+
+        public DataRowModel SelectedItem { get; set; }
 
         bool isRefreshing;
         public bool IsRefreshing
@@ -47,6 +58,8 @@ namespace ApiTestTask.ViewModels
             // Stop refreshing
             IsRefreshing = false;
         }
+
+        public Command CommentsCommand { get; }
 
         public IList<DataRowModel> DataSeries
         {
@@ -171,14 +184,5 @@ namespace ApiTestTask.ViewModels
                 Error = null;
             }
         }
-
-        #region INotifyPropertyChanged Members  
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        #endregion
     }
 }

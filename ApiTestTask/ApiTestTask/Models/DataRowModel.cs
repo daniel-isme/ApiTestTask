@@ -18,7 +18,7 @@ namespace ApiTestTask.Models
         public string DateValue { get; set; }
         public double Percent { get; set; }
         public string Comment { get; set; }
-        public List<Comment> Comments { get; set; }
+        public List<CommentModel> Comments { get; set; }
     }
 
     public class JsonObjectModel

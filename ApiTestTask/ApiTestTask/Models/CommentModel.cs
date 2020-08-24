@@ -5,9 +5,9 @@ using System.Text;
 
 namespace ApiTestTask.Models
 {
-    public class Comment
+    public class CommentModel
     {
-        public string CommentText { get; set; }
+        public string Comment { get; set; }
         public string Name { get; set; }
         public int Id { get; set; }
     }

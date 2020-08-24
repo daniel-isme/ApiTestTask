@@ -51,7 +51,10 @@
             <RefreshView IsRefreshing="{Binding IsRefreshing}"
              Command="{Binding RefreshCommand}" Grid.Row="2" Grid.ColumnSpan="5">
                 
-                <CollectionView ItemsSource="{Binding DataSeries}">
+                <CollectionView ItemsSource="{Binding DataSeries}"
+                                SelectionMode="Single"
+                                SelectedItem="{Binding SelectedItem}"
+                                SelectionChangedCommand="{Binding CommentsCommand}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout HeightRequest="60" VerticalOptions="Center">
@@ -64,7 +67,7 @@
                                            FontAttributes="Bold" FontSize="Medium" TextColor="#393939" HorizontalTextAlignment="End"/>
                                     <Label Grid.Column="3" Text="{Binding Diff, StringFormat='{0:0.00}'}"
                                            FontAttributes="Bold" FontSize="Medium" TextColor="{Binding Color}" HorizontalTextAlignment="End"/>
-                                    <Label Grid.Column="4" Text="CM" FontSize="Medium" HorizontalTextAlignment="Center"/>
+                                    <Button Grid.Column="4" Text="CM" FontSize="Medium"/>
                                 </Grid>
                             </StackLayout>
                         </DataTemplate>
