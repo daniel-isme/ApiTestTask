@@ -4,7 +4,9 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -18,8 +20,6 @@ namespace ApiTestTask.ViewModels
 {
     public class DataViewModel : BaseViewModel
     {
-        private IList<DataRowModel> dataSeries;
-        private DataRowModel dataSeriesHeader;
 
         public static ErrorModel Error;
         public ICommand RefreshCommand { get; }
@@ -28,17 +28,7 @@ namespace ApiTestTask.ViewModels
         {
             RefreshCommand = new Command(ExecuteRefreshCommand);
             GetData();
-
-            CommentsCommand = new Command(async () =>
-            {
-                var commentVM = new CommentViewModel(SelectedItem.Comments);
-                var commentsPage = new CommentsPage();
-                commentsPage.BindingContext = commentVM;
-                await Application.Current.MainPage.Navigation.PushAsync(commentsPage);
-            });
         }
-
-        public DataRowModel SelectedItem { get; set; }
 
         bool isRefreshing;
         public bool IsRefreshing
@@ -59,26 +49,18 @@ namespace ApiTestTask.ViewModels
             IsRefreshing = false;
         }
 
-        public Command CommentsCommand { get; }
-
-        public IList<DataRowModel> DataSeries
+        private ObservableCollection<DataRowViewModel> dataSeries;
+        public ObservableCollection<DataRowViewModel> DataSeries
         {
-            get { return dataSeries; }
-            set 
-            {
-                dataSeries = value;
-                OnPropertyChanged(nameof(DataSeries));
-            }
+            get => dataSeries;
+            set => SetProperty(ref dataSeries, value);
         }
 
-        public DataRowModel DataSeriesHeader
+        private DataRowViewModel dataSeriesHeader;
+        public DataRowViewModel DataSeriesHeader
         {
-            get { return dataSeriesHeader; }
-            set 
-            {
-                dataSeriesHeader = value;
-                OnPropertyChanged(nameof(DataSeriesHeader));
-            }
+            get => dataSeriesHeader;
+            set => SetProperty(ref dataSeriesHeader, value);
         }
 
         public class ErrorModel
@@ -94,8 +76,29 @@ namespace ApiTestTask.ViewModels
             if (allDataJson != null)
             {
                 var allDataObject = JsonConvert.DeserializeObject<JsonObjectModel>(allDataJson);
-                DataSeries = allDataObject.Data.DataSeries;
-                DataSeriesHeader = allDataObject.Data.DataSeriesHeader;
+
+                var dataSeriesOC = new ObservableCollection<DataRowViewModel>();
+                foreach (var dataRow in allDataObject.Data.DataSeries)
+                {
+                    dataSeriesOC.Add(new DataRowViewModel { 
+                        DateValueDisplay = dataRow.DateValueDisplay,
+                        Diff = dataRow.Diff,
+                        Fact = dataRow.Fact,
+                        Plan = dataRow.Plan
+                    });
+                }
+
+                DataSeries = dataSeriesOC;
+
+                var header = allDataObject.Data.DataSeriesHeader;
+                DataSeriesHeader = new DataRowViewModel
+                {
+                    Diff = header.Diff,
+                    Fact = header.Fact,
+                    Plan = header.Plan
+                };
+
+                #region Color definition
                 foreach (var dataRow in DataSeries)
                 {
                     if (dataRow.Diff < 0) dataRow.Color = ColorConverters.FromHex("#f98883");
@@ -106,6 +109,7 @@ namespace ApiTestTask.ViewModels
                 if (DataSeriesHeader.Diff < 0) DataSeriesHeader.Color = ColorConverters.FromHex("#f98883");
                 else if (DataSeriesHeader.Diff > 0) DataSeriesHeader.Color = Color.Green;
                 else DataSeriesHeader.Color = ColorConverters.FromHex("#b2b5bc");
+                #endregion  
             }
             else
             {
@@ -135,7 +139,8 @@ namespace ApiTestTask.ViewModels
             {
                 try
                 {
-                    json = await wc.DownloadStringTaskAsync(new Uri(url));
+                    //json = await wc.DownloadStringTaskAsync(new Uri(url));
+                    json = "{'Version':'1','StatusCode':200,'Data':{'ObjectId':2292,'IndicatorId':'Mine_Sinking','PeriodType':'month','PeriodValue':'2020-08-01T00:00:00','DetailType':'day','Name':'Проходка','Unit':'м','CacheUsed':true,'MinDate':'2018-01-01T00:00:00','MaxDate':'2020-08-31T00:00:00','LastDate':null,'DataSeriesHeader':{'DateValue':'0001-01-01T00:00:00','DateValueDisplay':null,'Plan':654,'Fact':612,'Diff':-42,'Percent':93.57798,'Comment':null,'Comments':null},'DataSeries':[{'DateValue':'2020-08-01T00:00:00','DateValueDisplay':'01','Plan':18,'Fact':18,'Diff':0,'Percent':100,'Comment':null,'Comments':[{'Id':9628,'Name':'Вент.штрек 6-1-23, камера','Comment':'Зачистка выработки.'},{'Id':9862,'Name':'Конв.уклон 3/6, камера','Comment':'Зачистка выработки.'}]},{'DateValue':'2020-08-02T00:00:00','DateValueDisplay':'02','Plan':18,'Fact':18,'Diff':0,'Percent':100,'Comment':null,'Comments':[{'Id':9626,'Name':'Газодр.штрек 6-1-23, камера','Comment':'Зачистка выработки.'},{'Id':9862,'Name':'Конв.уклон 3/6, камера','Comment':'Зачистка'}]},{'DateValue':'2020-08-03T00:00:00','DateValueDisplay':'03','Plan':33,'Fact':28,'Diff':-5,'Percent':84.84849,'Comment':null,'Comments':null},{'DateValue':'2020-08-04T00:00:00','DateValueDisplay':'04','Plan':36,'Fact':28,'Diff':-8,'Percent':77.77778,'Comment':null,'Comments':null},{'DateValue':'2020-08-05T00:00:00','DateValueDisplay':'05','Plan':34,'Fact':28,'Diff':-6,'Percent':82.35294,'Comment':null,'Comments':null},{'DateValue':'2020-08-06T00:00:00','DateValueDisplay':'06','Plan':34,'Fact':29,'Diff':-5,'Percent':85.29411,'Comment':null,'Comments':null},{'DateValue':'2020-08-07T00:00:00','DateValueDisplay':'07','Plan':34,'Fact':27,'Diff':-7,'Percent':79.411766,'Comment':null,'Comments':[{'Id':9626,'Name':'Газодр.штрек 6-1-23, камера','Comment':'Взятие дег.ниши. Дост-ка бур.станка.'}]},{'DateValue':'2020-08-08T00:00:00','DateValueDisplay':'08','Plan':33,'Fact':30,'Diff':-3,'Percent':90.909096,'Comment':null,'Comments':null},{'DateValue':'2020-08-09T00:00:00','DateValueDisplay':'09','Plan':31,'Fact':26,'Diff':-5,'Percent':83.870964,'Comment':null,'Comments':null},{'DateValue':'2020-08-10T00:00:00','DateValueDisplay':'10','Plan':32,'Fact':30,'Diff':-2,'Percent':93.75,'Comment':null,'Comments':[{'Id':9626,'Name':'Газодр.штрек 6-1-23, камера','Comment':'Зачистка'}]},{'DateValue':'2020-08-11T00:00:00','DateValueDisplay':'11','Plan':31,'Fact':30,'Diff':-1,'Percent':96.77419,'Comment':null,'Comments':[{'Id':9626,'Name':'Газодр.штрек 6-1-23, камера','Comment':'Зачистка выработки.'},{'Id':9756,'Name':'Люд.уклон (Вост.блок), сбойка, транс.уклон (Вост.блок)','Comment':'14:00-20:00 устранение нарушений ПБ(комиссия по приемке забоя).'}]},{'DateValue':'2020-08-12T00:00:00','DateValueDisplay':'12','Plan':31,'Fact':30,'Diff':-1,'Percent':96.77419,'Comment':null,'Comments':[{'Id':9626,'Name':'Газодр.штрек 6-1-23, камера','Comment':'Зачистка выработки.'}]},{'DateValue':'2020-08-13T00:00:00','DateValueDisplay':'13','Plan':30,'Fact':31,'Diff':1,'Percent':103.33333,'Comment':null,'Comments':null},{'DateValue':'2020-08-14T00:00:00','DateValueDisplay':'14','Plan':33,'Fact':32,'Diff':-1,'Percent':96.969696,'Comment':null,'Comments':[{'Id':9628,'Name':'Вент.штрек 6-1-23, камера','Comment':'12:00-18:00 Устранение нарушений ПБ. НТО.'}]},{'DateValue':'2020-08-15T00:00:00','DateValueDisplay':'15','Plan':30,'Fact':32,'Diff':2,'Percent':106.66667,'Comment':null,'Comments':null},{'DateValue':'2020-08-16T00:00:00','DateValueDisplay':'16','Plan':32,'Fact':32,'Diff':0,'Percent':100,'Comment':null,'Comments':[{'Id':8706,'Name':'Конв.уклон 4/6, камера','Comment':'Зачистка выработки.14:00-22:00устранение нарушений ПБ(НТО).'}]},{'DateValue':'2020-08-17T00:00:00','DateValueDisplay':'17','Plan':32,'Fact':32,'Diff':0,'Percent':100,'Comment':null,'Comments':[{'Id':8706,'Name':'Конв.уклон 4/6, камера','Comment':'Зачистка выработки.'}]},{'DateValue':'2020-08-18T00:00:00','DateValueDisplay':'18','Plan':31,'Fact':31,'Diff':0,'Percent':100,'Comment':null,'Comments':[{'Id':8706,'Name':'Конв.уклон 4/6, камера','Comment':'Зачистка выработки.'}]},{'DateValue':'2020-08-19T00:00:00','DateValueDisplay':'19','Plan':31,'Fact':31,'Diff':0,'Percent':100,'Comment':null,'Comments':[{'Id':9756,'Name':'Люд.уклон (Вост.блок), сбойка, транс.уклон (Вост.блок)','Comment':'Зачистка выработки.'},{'Id':9862,'Name':'Конв.уклон 3/6, камера','Comment':'11:00-20:00 Устранение замечаний приемной комиссии.'}]},{'DateValue':'2020-08-20T00:00:00','DateValueDisplay':'20','Plan':35,'Fact':34,'Diff':-1,'Percent':97.14286,'Comment':null,'Comments':null},{'DateValue':'2020-08-21T00:00:00','DateValueDisplay':'21','Plan':35,'Fact':35,'Diff':0,'Percent':100,'Comment':null,'Comments':[{'Id':9626,'Name':'Газодр.штрек 6-1-23, камера','Comment':'12:00-18:00 устранение нарушений ПБ(НТО).'},{'Id':9862,'Name':'Конв.уклон 3/6, камера','Comment':'12:00-18:00 устранение нарушений ПБ(НТО).'}]}]}}";
                 }
                 catch
                 {

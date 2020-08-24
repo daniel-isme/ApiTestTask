@@ -1,0 +1,336 @@
+{
+  "Version": "1",
+  "StatusCode": 200,
+  "Data": {
+    "ObjectId": 2292,
+    "IndicatorId": "Mine_Sinking",
+    "PeriodType": "month",
+    "PeriodValue": "2020-08-01T00:00:00",
+    "DetailType": "day",
+    "Name": "Проходка",
+    "Unit": "м",
+    "CacheUsed": true,
+    "MinDate": "2018-01-01T00:00:00",
+    "MaxDate": "2020-08-31T00:00:00",
+    "LastDate": null,
+    "DataSeriesHeader": {
+      "DateValue": "0001-01-01T00:00:00",
+      "DateValueDisplay": null,
+      "Plan": 654.0,
+      "Fact": 612.0,
+      "Diff": -42.0,
+      "Percent": 93.57798,
+      "Comment": null,
+      "Comments": null
+    },
+    "DataSeries": [
+      {
+        "DateValue": "2020-08-01T00:00:00",
+        "DateValueDisplay": "01",
+        "Plan": 18.0,
+        "Fact": 18.0,
+        "Diff": 0.0,
+        "Percent": 100.0,
+        "Comment": null,
+        "Comments": [
+          {
+            "Id": 9628,
+            "Name": "Вент.штрек 6-1-23, камера",
+            "Comment": "Зачистка выработки."
+          },
+          {
+            "Id": 9862,
+            "Name": "Конв.уклон 3/6, камера",
+            "Comment": "Зачистка выработки."
+          }
+        ]
+      },
+      {
+        "DateValue": "2020-08-02T00:00:00",
+        "DateValueDisplay": "02",
+        "Plan": 18.0,
+        "Fact": 18.0,
+        "Diff": 0.0,
+        "Percent": 100.0,
+        "Comment": null,
+        "Comments": [
+          {
+            "Id": 9626,
+            "Name": "Газодр.штрек 6-1-23, камера",
+            "Comment": "Зачистка выработки."
+          },
+          {
+            "Id": 9862,
+            "Name": "Конв.уклон 3/6, камера",
+            "Comment": "Зачистка"
+          }
+        ]
+      },
+      {
+        "DateValue": "2020-08-03T00:00:00",
+        "DateValueDisplay": "03",
+        "Plan": 33.0,
+        "Fact": 28.0,
+        "Diff": -5.0,
+        "Percent": 84.84849,
+        "Comment": null,
+        "Comments": null
+      },
+      {
+        "DateValue": "2020-08-04T00:00:00",
+        "DateValueDisplay": "04",
+        "Plan": 36.0,
+        "Fact": 28.0,
+        "Diff": -8.0,
+        "Percent": 77.77778,
+        "Comment": null,
+        "Comments": null
+      },
+      {
+        "DateValue": "2020-08-05T00:00:00",
+        "DateValueDisplay": "05",
+        "Plan": 34.0,
+        "Fact": 28.0,
+        "Diff": -6.0,
+        "Percent": 82.35294,
+        "Comment": null,
+        "Comments": null
+      },
+      {
+        "DateValue": "2020-08-06T00:00:00",
+        "DateValueDisplay": "06",
+        "Plan": 34.0,
+        "Fact": 29.0,
+        "Diff": -5.0,
+        "Percent": 85.29411,
+        "Comment": null,
+        "Comments": null
+      },
+      {
+        "DateValue": "2020-08-07T00:00:00",
+        "DateValueDisplay": "07",
+        "Plan": 34.0,
+        "Fact": 27.0,
+        "Diff": -7.0,
+        "Percent": 79.4117661,
+        "Comment": null,
+        "Comments": [
+          {
+            "Id": 9626,
+            "Name": "Газодр.штрек 6-1-23, камера",
+            "Comment": "Взятие дег.ниши. Дост-ка бур.станка."
+          }
+        ]
+      },
+      {
+        "DateValue": "2020-08-08T00:00:00",
+        "DateValueDisplay": "08",
+        "Plan": 33.0,
+        "Fact": 30.0,
+        "Diff": -3.0,
+        "Percent": 90.9090958,
+        "Comment": null,
+        "Comments": null
+      },
+      {
+        "DateValue": "2020-08-09T00:00:00",
+        "DateValueDisplay": "09",
+        "Plan": 31.0,
+        "Fact": 26.0,
+        "Diff": -5.0,
+        "Percent": 83.8709641,
+        "Comment": null,
+        "Comments": null
+      },
+      {
+        "DateValue": "2020-08-10T00:00:00",
+        "DateValueDisplay": "10",
+        "Plan": 32.0,
+        "Fact": 30.0,
+        "Diff": -2.0,
+        "Percent": 93.75,
+        "Comment": null,
+        "Comments": [
+          {
+            "Id": 9626,
+            "Name": "Газодр.штрек 6-1-23, камера",
+            "Comment": "Зачистка"
+          }
+        ]
+      },
+      {
+        "DateValue": "2020-08-11T00:00:00",
+        "DateValueDisplay": "11",
+        "Plan": 31.0,
+        "Fact": 30.0,
+        "Diff": -1.0,
+        "Percent": 96.77419,
+        "Comment": null,
+        "Comments": [
+          {
+            "Id": 9626,
+            "Name": "Газодр.штрек 6-1-23, камера",
+            "Comment": "Зачистка выработки."
+          },
+          {
+            "Id": 9756,
+            "Name": "Люд.уклон (Вост.блок), сбойка, транс.уклон (Вост.блок)",
+            "Comment": "14:00-20:00 устранение нарушений ПБ(комиссия по приемке забоя)."
+          }
+        ]
+      },
+      {
+        "DateValue": "2020-08-12T00:00:00",
+        "DateValueDisplay": "12",
+        "Plan": 31.0,
+        "Fact": 30.0,
+        "Diff": -1.0,
+        "Percent": 96.77419,
+        "Comment": null,
+        "Comments": [
+          {
+            "Id": 9626,
+            "Name": "Газодр.штрек 6-1-23, камера",
+            "Comment": "Зачистка выработки."
+          }
+        ]
+      },
+      {
+        "DateValue": "2020-08-13T00:00:00",
+        "DateValueDisplay": "13",
+        "Plan": 30.0,
+        "Fact": 31.0,
+        "Diff": 1.0,
+        "Percent": 103.333328,
+        "Comment": null,
+        "Comments": null
+      },
+      {
+        "DateValue": "2020-08-14T00:00:00",
+        "DateValueDisplay": "14",
+        "Plan": 33.0,
+        "Fact": 32.0,
+        "Diff": -1.0,
+        "Percent": 96.969696,
+        "Comment": null,
+        "Comments": [
+          {
+            "Id": 9628,
+            "Name": "Вент.штрек 6-1-23, камера",
+            "Comment": "12:00-18:00 Устранение нарушений ПБ. НТО."
+          }
+        ]
+      },
+      {
+        "DateValue": "2020-08-15T00:00:00",
+        "DateValueDisplay": "15",
+        "Plan": 30.0,
+        "Fact": 32.0,
+        "Diff": 2.0,
+        "Percent": 106.666672,
+        "Comment": null,
+        "Comments": null
+      },
+      {
+        "DateValue": "2020-08-16T00:00:00",
+        "DateValueDisplay": "16",
+        "Plan": 32.0,
+        "Fact": 32.0,
+        "Diff": 0.0,
+        "Percent": 100.0,
+        "Comment": null,
+        "Comments": [
+          {
+            "Id": 8706,
+            "Name": "Конв.уклон 4/6, камера",
+            "Comment": "Зачистка выработки.14:00-22:00устранение нарушений ПБ(НТО)."
+          }
+        ]
+      },
+      {
+        "DateValue": "2020-08-17T00:00:00",
+        "DateValueDisplay": "17",
+        "Plan": 32.0,
+        "Fact": 32.0,
+        "Diff": 0.0,
+        "Percent": 100.0,
+        "Comment": null,
+        "Comments": [
+          {
+            "Id": 8706,
+            "Name": "Конв.уклон 4/6, камера",
+            "Comment": "Зачистка выработки."
+          }
+        ]
+      },
+      {
+        "DateValue": "2020-08-18T00:00:00",
+        "DateValueDisplay": "18",
+        "Plan": 31.0,
+        "Fact": 31.0,
+        "Diff": 0.0,
+        "Percent": 100.0,
+        "Comment": null,
+        "Comments": [
+          {
+            "Id": 8706,
+            "Name": "Конв.уклон 4/6, камера",
+            "Comment": "Зачистка выработки."
+          }
+        ]
+      },
+      {
+        "DateValue": "2020-08-19T00:00:00",
+        "DateValueDisplay": "19",
+        "Plan": 31.0,
+        "Fact": 31.0,
+        "Diff": 0.0,
+        "Percent": 100.0,
+        "Comment": null,
+        "Comments": [
+          {
+            "Id": 9756,
+            "Name": "Люд.уклон (Вост.блок), сбойка, транс.уклон (Вост.блок)",
+            "Comment": "Зачистка выработки."
+          },
+          {
+            "Id": 9862,
+            "Name": "Конв.уклон 3/6, камера",
+            "Comment": "11:00-20:00 Устранение замечаний приемной комиссии."
+          }
+        ]
+      },
+      {
+        "DateValue": "2020-08-20T00:00:00",
+        "DateValueDisplay": "20",
+        "Plan": 35.0,
+        "Fact": 34.0,
+        "Diff": -1.0,
+        "Percent": 97.14286,
+        "Comment": null,
+        "Comments": null
+      },
+      {
+        "DateValue": "2020-08-21T00:00:00",
+        "DateValueDisplay": "21",
+        "Plan": 35.0,
+        "Fact": 35.0,
+        "Diff": 0.0,
+        "Percent": 100.0,
+        "Comment": null,
+        "Comments": [
+          {
+            "Id": 9626,
+            "Name": "Газодр.штрек 6-1-23, камера",
+            "Comment": "12:00-18:00 устранение нарушений ПБ(НТО)."
+          },
+          {
+            "Id": 9862,
+            "Name": "Конв.уклон 3/6, камера",
+            "Comment": "12:00-18:00 устранение нарушений ПБ(НТО)."
+          }
+        ]
+      }
+    ]
+  }
+}
