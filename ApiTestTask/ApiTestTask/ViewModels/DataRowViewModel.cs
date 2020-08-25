@@ -13,7 +13,7 @@ namespace ApiTestTask.ViewModels
         {
             CommentsCommand = new Command<DataRowViewModel>(async (parameter) =>
             {
-                var commentVM = new CommentViewModel(parameter.Comments);
+                var commentVM = new CommentViewModel(parameter.Comments, IsRead);
                 var commentsPage = new CommentsPage();
                 commentsPage.BindingContext = commentVM;
                 await Application.Current.MainPage.Navigation.PushAsync(commentsPage);
@@ -24,6 +24,7 @@ namespace ApiTestTask.ViewModels
 
 
         public List<CommentModel> Comments { get; set; }
+        public bool IsRead { get; set; }
         public double Diff { get; set; }
         public double Fact { get; set; }
         public double Plan { get; set; }

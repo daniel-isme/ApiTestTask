@@ -30,23 +30,19 @@ namespace ApiTestTask.ViewModels
             GetData();
         }
 
-        bool isRefreshing;
-        public bool IsRefreshing
-        {
-            get => isRefreshing;
-            set
-            {
-                isRefreshing = value;
-                OnPropertyChanged(nameof(IsRefreshing));
-            }
-        }
-
         void ExecuteRefreshCommand()
         {
             GetData();
 
             // Stop refreshing
             IsRefreshing = false;
+        }
+
+        bool isRefreshing;
+        public bool IsRefreshing
+        {
+            get => isRefreshing;
+            set => SetProperty(ref isRefreshing, value);
         }
 
         private ObservableCollection<DataRowViewModel> dataSeries;

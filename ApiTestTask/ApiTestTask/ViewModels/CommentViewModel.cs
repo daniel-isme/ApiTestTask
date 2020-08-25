@@ -7,21 +7,19 @@ namespace ApiTestTask.ViewModels
 {
     public class CommentViewModel : BaseViewModel
     {
-        public CommentViewModel(List<CommentModel> _comments)
+        public CommentViewModel(List<CommentModel> _comments, bool isRead)
         {
             Comments = _comments;
+            IsRead = isRead;
         }
 
         List<CommentModel> comments;
-
         public List<CommentModel> Comments
         {
-            get { return comments; }
-            set
-            {
-                comments = value;
-                OnPropertyChanged(nameof(Comments));
-            }
+            get => comments;
+            set => SetProperty(ref comments, value);
         }
+
+        public bool IsRead { get; set; }
     }
 }

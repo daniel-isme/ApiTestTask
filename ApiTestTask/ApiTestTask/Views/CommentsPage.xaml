@@ -4,20 +4,35 @@
              x:Class="ApiTestTask.Views.CommentsPage">
 
     <ContentPage.Content>
-        <CollectionView ItemsSource="{Binding Comments}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout VerticalOptions="Center">
-                        <BoxView HorizontalOptions="FillAndExpand" HeightRequest="2" Color="#dbdbdb"/>
-                        <Grid Margin="20,0,0,0">
-                            <Label Grid.Row="0" Text="{Binding Name}" 
+
+        <StackLayout>
+            
+            <Grid Margin="15,7,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="15*"/>
+                </Grid.ColumnDefinitions>
+                <CheckBox Grid.Column="0" IsChecked="{Binding IsRead}"/>
+                <Label Grid.Column="1" Text="Прочитано"
+                       FontAttributes="Bold" FontSize="Medium" 
+                       TextColor="#4f596e" HorizontalTextAlignment="Start"/>
+            </Grid>
+            <CollectionView ItemsSource="{Binding Comments}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout VerticalOptions="Center">
+                            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="2" Color="#dbdbdb"/>
+                            <Grid Margin="20,0,0,0">
+                                <Label Grid.Row="0" Text="{Binding Name}" 
                                    FontAttributes="Bold" FontSize="Medium" TextColor="#4f596e" HorizontalTextAlignment="Start"/>
-                            <Label Grid.Row="1" Text="{Binding Comment}"
+                                <Label Grid.Row="1" Text="{Binding Comment}"
                                    FontSize="Medium" TextColor="#4f596e" HorizontalTextAlignment="Start"/>
-                        </Grid>
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                            </Grid>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+        
     </ContentPage.Content>
 </ContentPage>
