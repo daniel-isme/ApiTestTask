@@ -1,16 +1,15 @@
 ﻿using ApiTestTask.Models;
+using Prism.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ApiTestTask.ViewModels
 {
-    public class CommentViewModel : BaseViewModel
+    public class CommentsViewModel : BaseViewModel
     {
-        public CommentViewModel(List<CommentModel> _comments, bool isRead)
+        public CommentsViewModel()
         {
-            Comments = _comments;
-            IsRead = isRead;
         }
 
         List<CommentModel> comments;

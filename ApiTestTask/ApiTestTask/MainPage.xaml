@@ -57,7 +57,7 @@
                                            FontAttributes="Bold" FontSize="Medium" TextColor="#393939" HorizontalTextAlignment="End"/>
                                     <Label Grid.Column="3" Text="{Binding Diff, StringFormat='{0:0.00}'}"
                                            FontAttributes="Bold" FontSize="Medium" TextColor="{Binding Color}" HorizontalTextAlignment="End"/>
-                                    <ImageButton Grid.Column="4" Source="message_white.png" BackgroundColor="#0000"
+                                    <ImageButton Grid.Column="4" Source="{Binding GetCommentsImage}" BackgroundColor="#0000"
                                             Command="{Binding CommentsCommand}"
                                             CommandParameter="{Binding .}"
                                             IsVisible="{Binding ShowCommentsButton}"

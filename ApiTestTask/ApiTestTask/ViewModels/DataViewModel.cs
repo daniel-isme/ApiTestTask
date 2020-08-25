@@ -2,6 +2,8 @@
 using ApiTestTask.Views;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Prism.Commands;
+using Prism.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -81,7 +83,7 @@ namespace ApiTestTask.ViewModels
                         Diff = dataRow.Diff,
                         Fact = dataRow.Fact,
                         Plan = dataRow.Plan,
-                        Comments = dataRow.Comments,
+                        CommentsVM = new CommentsViewModel { Comments = dataRow.Comments },
                         ShowCommentsButton = dataRow.Comments?.Any() ?? false,
                         Color = DefineColor(dataRow.Diff),
                     });
