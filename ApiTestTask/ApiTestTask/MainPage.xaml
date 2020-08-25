@@ -64,9 +64,10 @@
                                            FontAttributes="Bold" FontSize="Medium" TextColor="#393939" HorizontalTextAlignment="End"/>
                                     <Label Grid.Column="3" Text="{Binding Diff, StringFormat='{0:0.00}'}"
                                            FontAttributes="Bold" FontSize="Medium" TextColor="{Binding Color}" HorizontalTextAlignment="End"/>
-                                    <Button Grid.Column="4" Text="CM" FontSize="Medium"
+                                    <ImageButton Grid.Column="4" Source="message.png" BackgroundColor="#0000"
                                             Command="{Binding CommentsCommand}"
                                             CommandParameter="{Binding .}"
+                                            IsVisible="{Binding ShowCommentsButton}"
                                             />
                                 </Grid>
                             </StackLayout>

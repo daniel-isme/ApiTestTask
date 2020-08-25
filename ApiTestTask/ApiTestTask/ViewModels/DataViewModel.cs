@@ -84,7 +84,10 @@ namespace ApiTestTask.ViewModels
                         DateValueDisplay = dataRow.DateValueDisplay,
                         Diff = dataRow.Diff,
                         Fact = dataRow.Fact,
-                        Plan = dataRow.Plan
+                        Plan = dataRow.Plan,
+                        Comments = dataRow.Comments,
+                        ShowCommentsButton = dataRow.Comments?.Any() ?? false,
+                        Color = DefineColor(dataRow.Diff),
                     });
                 }
 
@@ -95,21 +98,9 @@ namespace ApiTestTask.ViewModels
                 {
                     Diff = header.Diff,
                     Fact = header.Fact,
-                    Plan = header.Plan
+                    Plan = header.Plan,
+                    Color = DefineColor(header.Diff),
                 };
-
-                #region Color definition
-                foreach (var dataRow in DataSeries)
-                {
-                    if (dataRow.Diff < 0) dataRow.Color = ColorConverters.FromHex("#f98883");
-                    else if (dataRow.Diff > 0) dataRow.Color = Color.Green;
-                    else dataRow.Color = ColorConverters.FromHex("#b2b5bc");
-                }
-
-                if (DataSeriesHeader.Diff < 0) DataSeriesHeader.Color = ColorConverters.FromHex("#f98883");
-                else if (DataSeriesHeader.Diff > 0) DataSeriesHeader.Color = Color.Green;
-                else DataSeriesHeader.Color = ColorConverters.FromHex("#b2b5bc");
-                #endregion  
             }
             else
             {
@@ -188,6 +179,13 @@ namespace ApiTestTask.ViewModels
                 mainPage.DisplayAlert(Error.Title, Error.Message, Error.Cancel);
                 Error = null;
             }
+        }
+
+        Color DefineColor(double diff)
+        {
+            if (diff < 0) return ColorConverters.FromHex("#f98883");
+            else if (diff > 0) return Color.Green;
+            else return ColorConverters.FromHex("#b2b5bc");
         }
     }
 }

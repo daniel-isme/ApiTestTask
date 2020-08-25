@@ -11,7 +11,7 @@ namespace ApiTestTask.ViewModels
     {
         public DataRowViewModel()
         {
-            CommentsCommand = new Command<DataRowModel>(async (parameter) =>
+            CommentsCommand = new Command<DataRowViewModel>(async (parameter) =>
             {
                 var commentVM = new CommentViewModel(parameter.Comments);
                 var commentsPage = new CommentsPage();
@@ -23,11 +23,13 @@ namespace ApiTestTask.ViewModels
         public Command CommentsCommand { get; set; }
 
 
+        public List<CommentModel> Comments { get; set; }
         public double Diff { get; set; }
         public double Fact { get; set; }
         public double Plan { get; set; }
         public string DateValueDisplay { get; set; }
         public Color Color { get; set; }
+        public bool ShowCommentsButton { get; set; }
 
     }
 }
