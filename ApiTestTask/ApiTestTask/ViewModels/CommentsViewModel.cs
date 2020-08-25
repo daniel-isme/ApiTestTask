@@ -8,8 +8,10 @@ namespace ApiTestTask.ViewModels
 {
     public class CommentsViewModel : BaseViewModel
     {
-        public CommentsViewModel()
+        public CommentsViewModel(List<CommentModel> _comments, bool isRead)
         {
+            comments = _comments;
+            IsRead = isRead;
         }
 
         List<CommentModel> comments;

@@ -83,7 +83,7 @@ namespace ApiTestTask.ViewModels
                         Diff = dataRow.Diff,
                         Fact = dataRow.Fact,
                         Plan = dataRow.Plan,
-                        CommentsVM = new CommentsViewModel { Comments = dataRow.Comments },
+                        Comments = dataRow.Comments,
                         ShowCommentsButton = dataRow.Comments?.Any() ?? false,
                         Color = DefineColor(dataRow.Diff),
                     });
