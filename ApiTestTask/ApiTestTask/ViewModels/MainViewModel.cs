@@ -20,13 +20,13 @@ using Xamarin.Forms;
 
 namespace ApiTestTask.ViewModels
 {
-    public class DataViewModel : BaseViewModel
+    public class MainViewModel : BaseViewModel
     {
 
         public static ErrorModel Error;
         public ICommand RefreshCommand { get; }
 
-        public DataViewModel()
+        public MainViewModel()
         {
             RefreshCommand = new Command(ExecuteRefreshCommand);
             GetData();

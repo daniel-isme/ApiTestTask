@@ -5,7 +5,7 @@
              x:Class="ApiTestTask.MainPage">
 
     <ContentPage.BindingContext>
-        <local:DataViewModel />
+        <local:MainViewModel />
     </ContentPage.BindingContext>
 
     <ContentPage.Content>
@@ -44,29 +44,30 @@
             <RefreshView IsRefreshing="{Binding IsRefreshing}"
              Command="{Binding RefreshCommand}" Grid.Row="2" Grid.ColumnSpan="5">
                 
-                <CollectionView ItemsSource="{Binding DataSeries}">
-                    <CollectionView.ItemTemplate>
+                <ListView ItemsSource="{Binding DataSeries}">
+                    <ListView.ItemTemplate>
                         <DataTemplate>
-                            <StackLayout HeightRequest="60" VerticalOptions="Center">
-                                <BoxView HorizontalOptions="FillAndExpand" HeightRequest="2" Color="#dbdbdb"/>
-                                <Grid Margin="0,9,0,0">
-                                    <Label Grid.Column="0" Text="{Binding DateValueDisplay}" FontSize="Medium" TextColor="#4f596e" HorizontalTextAlignment="End"/>
-                                    <Label Grid.Column="1" Text="{Binding Plan, StringFormat='{0:0.00}'}"
+                            <ViewCell>
+                                <StackLayout Orientation="Vertical" VerticalOptions="Center">
+                                    <Grid>
+                                        <Label Grid.Column="0" Text="{Binding DateValueDisplay}" FontSize="Medium" TextColor="#4f596e" HorizontalTextAlignment="End"/>
+                                        <Label Grid.Column="1" Text="{Binding Plan, StringFormat='{0:0.00}'}"
                                            FontAttributes="Bold" FontSize="Medium" TextColor="#4f596e" HorizontalTextAlignment="End"/>
-                                    <Label Grid.Column="2" Text="{Binding Fact, StringFormat='{0:0.00}'}"
+                                        <Label Grid.Column="2" Text="{Binding Fact, StringFormat='{0:0.00}'}"
                                            FontAttributes="Bold" FontSize="Medium" TextColor="#393939" HorizontalTextAlignment="End"/>
-                                    <Label Grid.Column="3" Text="{Binding Diff, StringFormat='{0:0.00}'}"
+                                        <Label Grid.Column="3" Text="{Binding Diff, StringFormat='{0:0.00}'}"
                                            FontAttributes="Bold" FontSize="Medium" TextColor="{Binding Color}" HorizontalTextAlignment="End"/>
-                                    <ImageButton Grid.Column="4" Source="{Binding GetCommentsImage}" BackgroundColor="#0000"
+                                        <ImageButton Grid.Column="4" Source="{Binding GetCommentsImage}" BackgroundColor="#0000"
                                             Command="{Binding CommentsCommand}"
                                             CommandParameter="{Binding .}"
                                             IsVisible="{Binding ShowCommentsButton}"
                                             />
-                                </Grid>
-                            </StackLayout>
+                                    </Grid>
+                                </StackLayout>
+                            </ViewCell>
                         </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
+                    </ListView.ItemTemplate>
+                </ListView>
                 
             </RefreshView>
 

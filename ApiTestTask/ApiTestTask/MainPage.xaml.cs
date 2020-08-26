@@ -18,7 +18,7 @@ namespace ApiTestTask
 
         protected override void OnAppearing()
         {
-            var error = DataViewModel.Error;
+            var error = MainViewModel.Error;
             if (error != null)
             {
                 DisplayAlert(error.Title, error.Message, error.Cancel);
