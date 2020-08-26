@@ -17,21 +17,22 @@
                        FontAttributes="Bold" FontSize="Medium" 
                        TextColor="#4f596e" HorizontalTextAlignment="Start"/>
             </Grid>
-            <CollectionView ItemsSource="{Binding Comments}">
-                <CollectionView.ItemTemplate>
+            <ListView HasUnevenRows="True" ItemsSource="{Binding Comments}">
+                <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout VerticalOptions="Center">
-                            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="2" Color="#dbdbdb"/>
-                            <Grid Margin="20,0,0,0">
-                                <Label Grid.Row="0" Text="{Binding Name}" 
+                        <ViewCell>
+                            <StackLayout>
+                                <Grid Margin="15,7,0,9">
+                                    <Label Grid.Row="0" Text="{Binding Name}" 
                                    FontAttributes="Bold" FontSize="Medium" TextColor="#4f596e" HorizontalTextAlignment="Start"/>
-                                <Label Grid.Row="1" Text="{Binding Comment}"
+                                    <Label Grid.Row="1" Text="{Binding Comment}"
                                    FontSize="Medium" TextColor="#4f596e" HorizontalTextAlignment="Start"/>
-                            </Grid>
-                        </StackLayout>
+                                </Grid>
+                            </StackLayout>
+                        </ViewCell>
                     </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
         
     </ContentPage.Content>
